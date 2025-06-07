@@ -6,8 +6,7 @@
 // @author       You
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
-// @updateURL    https://raw.githubusercontent.com/yourusername/yourrepo/main/myscript.user.js
-// @downloadURL  https://raw.githubusercontent.com/yourusername/yourrepo/main/myscript.user.js
+// @updateURL
 // ==/UserScript==
 
 (function() {
