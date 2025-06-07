@@ -6,7 +6,8 @@
 // @author       You
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
-
+// @updateURL https://raw.githubusercontent.com/Tempmist/ChatTheme/refs/heads/master/Main.user.js
+// @downloadURL https://raw.githubusercontent.com/Tempmist/ChatTheme/refs/heads/master/Main.user.js
 // ==/UserScript==
 
 (function() {
