@@ -6,7 +6,7 @@
 // @author       You
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
-// @updateURL
+
 // ==/UserScript==
 
 (function() {
