@@ -13,7 +13,7 @@
 (function() {
   "use strict";
 
-  // 🧱 DOM Setup: Create UI (unchanged)
+  // 🧱 DOM Setup: Create UI (unchanged) hi
   const uiHTML = `<style>
   /* Styling for pages */
   .page {
