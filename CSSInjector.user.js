@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSS Injector
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Inject custom CSS into a webpage
 // @author       You
 // @match        https://chatgpt.com/*
@@ -206,15 +206,15 @@ button {
     border-radius: 100px !important;
 }
 
-button:hover{
-    background: var(--button-hover);
+button:hover {
+    background: var(--button-hover)!important;
 }
 /* =============================
    ❌ Hide/Remove UI Elements
    ============================= */
 /* Header Bar*/
    #page-header {
-    background: transparent;
+    background: transparent !important;
 }
 
 body>div>div>div>div>div {
@@ -222,11 +222,11 @@ body>div>div>div>div>div {
 }
 /*Title*/
 [data-testid="model-switcher-dropdown-button"] {
-    display: none;
+    display: none !important;
 }
 
 div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
-    display: none;
+    display: none !important;
 }
 /*Sora Title*/
 [title="Sora"] {
@@ -234,15 +234,15 @@ div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
 }
 /*Upgrade Side Banner - Mobile*/
 .group.flex.gap-2.p-2\.5.text-sm.cursor-pointer.focus\:ring-0.radix-disabled\:pointer-events-none.radix-disabled\:opacity-50.items-center.hover\:bg-token-sidebar-surface-secondary.screen-arch\:px-2.screen-arch\:py-1\.5.screen-arch\:min-h-\[47px\].m-0.rounded-lg.px-2 {
-    display: none;
+    display: none !important;
 }
 /*Upgrade Side Banner - PC */
 body > div> div > div > div > div > nav >div>div>div>div{
-  display:none;
+  display:none !important;
 }
 /*Overlimit Banner*/
 .py-4 {
-    display: none;
+    display: none !important;
 }
 
     `;
