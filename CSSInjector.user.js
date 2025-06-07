@@ -80,8 +80,8 @@
     --sidebar-list-color: linear-gradient(0deg, rgba(39, 28, 124, 1) 0%, rgba(80, 20, 120, 1) 100%);
 
     /* Buttons */
-    --button-bg: transparent;
-    --button-hover: transparent;
+    --button-bg: :rgb(114, 47, 128);
+    --button-hover: rgb(255, 224, 51);
     --button-text: rgb(245, 188, 247);
 }
 
