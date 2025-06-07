@@ -1,0 +1,111 @@
+:root {
+    /* Layout */
+    --background-main: #c9b7e7;
+    --input-box: #e998ce;
+    --input-text: rgb(58, 0, 65);
+    --heading-color: rgb(155, 9, 106);
+    --font: "comfortaa", sans-serif;
+    --heading-font: "Delius Unicase", cursive;
+
+    /*Code Boxes*/
+    --code-bg: rgb(58, 37, 37);
+
+    /* Chat Bubbles */
+    --user-bubble-bg: #9fe4ff;
+    --user-text-color: #000285;
+    --user-bubble-border: 1px solid rgb(255, 174, 0);
+
+    --assistant-bubble-bg: #fdc89d;
+    --assistant-text-color: rgb(7, 138, 179);
+    --assistant-bubble-border: 1px solid rgb(0, 195, 255);
+
+    /* Sidebar */
+    --sidebar-bg: linear-gradient(0deg, rgb(4, 92, 163) 0%, rgb(253, 224, 142) 100%);
+    --sidebar-link: rgb(73, 27, 75);
+    --sidebar-hover: rgba(255, 174, 0, 0.2);
+    --sidebar-heading: rgb(54, 26, 80);
+    --sidebar-list-border: 1px solid rgb(66, 40, 128);
+    --sidebar-list-color: linear-gradient(0deg, rgb(4, 92, 163) 0%, rgb(253, 224, 142) 100%);
+
+    /* Buttons */
+    --button-bg: transparent;
+    --button-hover: transparent;
+    --button-text: rgb(75, 32, 77);
+}
+/* =============================
+   🌑 Dark Mode Overrides
+   ============================= */
+.dark {
+    /* Layout */
+    --background-main: #3c2e53;
+    --input-box: #883888;
+    --input-text: rgb(240, 211, 243);
+    --heading-color: rgb(251, 251, 252);
+    --font: "comfortaa", sans-serif;
+    --heading-font: "Delius Unicase", cursive;
+
+    /*Code Boxes*/
+    --code-bg: rgb(58, 37, 37);
+
+    /* Chat Bubbles */
+    --user-bubble-bg: #a74e6c;
+    --user-text-color: #dbf1ff;
+    --user-bubble-border: 1px solid rgb(255, 221, 148);
+
+    --assistant-bubble-bg: #602085;
+    --assistant-text-color: rgb(255, 239, 253);
+    --assistant-bubble-border: 1px solid rgba(255, 214, 0, 1);
+
+    /* Sidebar */
+    --sidebar-bg: linear-gradient(0deg, rgba(39, 28, 124, 1) 0%, rgba(80, 20, 120, 1) 100%);
+    --sidebar-link: rgb(238, 187, 240);
+    --sidebar-hover: rgba(255, 118, 74, 0.2);
+    --sidebar-heading: rgb(204, 150, 255);
+    --sidebar-list-border: 1px solid rgb(255, 224, 51);
+    --sidebar-list-color: linear-gradient(0deg, rgba(39, 28, 124, 1) 0%, rgba(80, 20, 120, 1) 100%);
+
+    /* Buttons */
+    --button-bg: transparent;
+    --button-hover: transparent;
+    --button-text: rgb(245, 188, 247);
+}
+
+/* =============================
+   🖼️ Background
+   ============================= */
+.chat-container  {
+    background: var(--background-main) !important;
+}
+
+/* =============================
+   💬 Chat Bubbles
+   ============================= */
+.user-query-bubble-with-background{
+    background: var(--user-bubble-bg) !important;
+    color: var(--user-text-color) !important;
+    border: var(--user-bubble-border) !important; 
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    font-family: var(--font) !important;
+}
+
+.response-container{
+    background: var(--assistant-bubble-bg) !important;
+    color: var(--assistant-text-color) !important;
+    border: var(--assistant-bubble-border) !important;
+    border-radius: 20px !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    font-family: var(--font) !important;
+}
+
+.chat-container {
+	background:pink;
+}
+
+.text-input-field {
+	/*Your code should go under this comment*/
+}
+bard-sidenav-content {
+	background: transparent;
+}

@@ -1,0 +1,25 @@
+
+:root {
+  --background-main: #00b0c1;
+  --input-box: #074375;
+  --input-text: #fafafa;
+  --heading-color: #deffde;
+  --font: comfortaa, sans-serif;
+  --heading-font: Delius Unicase, cursive;
+  --code-bg: #ffffff;
+  --user-bubble-bg: #ff6600;
+  --user-text-color: #074375;
+  --user-bubble-border: #ffdd00 solid 5px;
+  --assistant-bubble-bg: #ffdd00;
+  --assistant-text-color: #074375;
+  --assistant-bubble-border: #ff6100 solid 4px;
+  --sidebar-bg: #074375;
+  --sidebar-link: #deffde;
+  --sidebar-hover: #ff6100;
+  --sidebar-heading: #eeff00;
+  --sidebar-list-border: #ffdd00 double 8px;
+  --sidebar-list-color: #00b0c1;
+  --button-bg: #deffde;
+  --button-hover: #ffdd00;
+  --button-text: #074375;
+}

@@ -1,0 +1,444 @@
+<style>
+  /* Styling for pages */
+  .page {
+    display: none;
+  }
+  .page.active {
+    display: block;
+  }
+  h3 {
+    margin-bottom: 1px;
+    margin-top: 1px;
+  }
+  #css-customizer {
+    position: fixed;
+    top: 50px;
+    right: 5px;
+    background: rgb(233, 233, 233);
+    color: black;
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 9999;
+    max-height: 60vh;
+    overflow-y: auto;
+    width: 250px;
+    font-family: sans-serif;
+  }
+  #toggle-customizer {
+    position: absolute;
+    top: 10px;
+    right: 230px;
+    background: lightblue;
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 9999;
+    width: 100px;
+  }
+</style>
+
+<div id="css-customizer">
+  <!-- Page Navigation -->
+  <div id="page-nav">
+    <button class="page-nav-btn" data-page="background-page">Main</button>
+    <button class="page-nav-btn" data-page="sidebar-page">Sidebar</button>
+    <button class="page-nav-btn" data-page="button-page">Buttons</button>
+    <button class="page-nav-btn" data-page="user-page">User Bubbles</button>
+    <button class="page-nav-btn" data-page="robo-page">Robo Bubbles</button>
+    <button class="page-nav-btn" data-page="other-page">Other</button>
+    <button id="download-css" style="background: green; color: white">
+      Download CSS
+    </button>
+    <label for="theme-mode">Mode:</label>
+    <select id="theme-mode">
+      <option value=":root">Light</option>
+      <option value=":dark">Dark</option>
+    </select>
+  </div>
+
+  <!--------------------------------------------------------------->
+  <!------------Main Background------------------------------------>
+  <!-------------------------------------------------------------->
+  <div id="background-page" class="page active">
+    <h3>Background</h3>
+    <label for="background-type">Type: </label>
+    <br />
+    <select id="background-type">
+      <option value="solid">Solid Color</option>
+      <option value="gradient">Gradient</option>
+      <option value="image">Image</option>
+      <option value="pattern">Pattern</option>
+    </select>
+    <br />
+    <!-- Solid Background Color -->
+    <div id="solid-background" class="background-option">
+      <label for="background-main">Solid Color: </label>
+      <br />
+      <input type="color" id="background-main" value="#c9b7e7" />
+    </div>
+
+    <!-- Gradient Background -->
+    <div
+      id="gradient-background"
+      class="background-option"
+      style="display: none"
+    >
+      <label for="gradient-start">Gradient Start Color: </label>
+      <br />
+      <input type="color" id="gradient-start" value="#c9b7e7" />
+      <br />
+      <label for="gradient-end">Gradient End Color: </label>
+      <br />
+      <input type="color" id="gradient-end" value="#9fe4ff" />
+      <br />
+      <label for="gradient-direction">Gradient Direction: </label>
+      <br />
+      <select id="gradient-direction">
+        <option value="to bottom">Top to Bottom</option>
+        <option value="to right">Left to Right</option>
+        <option value="to left">Right to Left</option>
+      </select>
+    </div>
+
+    <!-- Image Background -->
+    <div id="image-background" class="background-option" style="display: none">
+      <label for="background-image">Image URL: </label>
+      <input type="text" id="background-image" value="" />
+    </div>
+
+    <!-- Pattern -->
+    <div
+      id="pattern-background"
+      class="background-option"
+      style="display: none"
+    >
+      <label for="bg-pattern-url">Pattern Image URL: </label>
+      <input type="text" id="bg-pattern-url" placeholder="" />
+    </div>
+
+    <!--------------------------------------------------------------->
+    <!------------Input Box ------------------------------------>
+    <!-------------------------------------------------------------->
+    <h3>Input Box</h3>
+    <label for="input-box">Color: </label>
+    <br />
+    <input type="color" id="input-box" value="#ffffff" />
+    <br />
+
+    <label for="input-text">Text: </label>
+    <br />
+    <input type="color" id="input-text" value="#000000" />
+    <br />
+  </div>
+  <!--------------------------------------------------------------->
+  <!------------User Bubbles ------------------------------------>
+  <!-------------------------------------------------------------->
+  <div id="user-page" class="page">
+    <h3>User Bubbles</h3>
+    <label for="user-bg-type">Background Type: </label>
+    <br />
+    <select id="user-bg-type">
+      <option value="solid">Solid Color</option>
+      <option value="gradient">Gradient</option>
+    </select>
+    <br />
+
+    <!-- Solid Background Color -->
+    <div id="user-solid-bg" class="background-option">
+      <label for="user-bg-main">Solid Color: </label>
+      <br />
+      <input type="color" id="user-bg-main" value="#ffffff" />
+    </div>
+
+    <!-- Gradient Background -->
+    <div id="user-gradient-bg" class="background-option" style="display: none">
+      <label for="user-gradient-start">Gradient Start Color: </label>
+      <br />
+      <input type="color" id="user-gradient-start" value="#c9b7e7" />
+      <br />
+      <label for="user-gradient-end">Gradient End Color: </label>
+      <br />
+      <input type="color" id="user-gradient-end" value="#9fe4ff" />
+      <br />
+      <label for="user-gradient-direction">Gradient Direction: </label>
+      <br />
+      <select id="user-gradient-direction">
+        <option value="to bottom">Top to Bottom</option>
+        <option value="to right">Left to Right</option>
+        <option value="to left">Right to Left</option>
+      </select>
+    </div>
+
+    <label for="user-text-color">Text Color: </label>
+    <br />
+    <input type="color" id="user-text-color" value="#000285" />
+    <br />
+
+    <label for="user-bubble-border">Border: </label>
+    <br />
+    <input type="color" id="user-bubble-border" value="#000000" />
+    <br />
+    <label for="user-bubble-border-width">Border Width (px): </label>
+    <input type="range" id="user-bubble-border-width" value="2" min="0" />
+    <br />
+
+    <label for="user-bubble-border-style">Border Style: </label>
+    <br />
+    <select id="user-bubble-border-style">
+      <option value="solid">Solid</option>
+      <option value="dashed">Dashed</option>
+      <option value="dotted">Dotted</option>
+      <option value="double">Double</option>
+      <option value="groove">Groove</option>
+      <option value="ridge">Ridge</option>
+    </select>
+    <br />
+  </div>
+  <!--------------------------------------------------------------->
+  <!------------Robot Bubbles ------------------------------------>
+  <!-------------------------------------------------------------->
+  <div id="robo-page" class="page">
+    <h3>Robot Bubbles</h3>
+    <label for="robot-bg-type">Background Type: </label>
+    <br />
+    <select id="robot-bg-type">
+      <option value="solid">Solid Color</option>
+      <option value="gradient">Gradient</option>
+    </select>
+    <br />
+
+    <!-- Solid Background Color -->
+    <div id="robot-solid-bg" class="background-option">
+      <label for="robot-bg-main">Solid Color: </label>
+      <br />
+      <input type="color" id="robot-bg-main" value="#ffffff" />
+    </div>
+
+    <!-- Gradient Background -->
+    <div id="robot-gradient-bg" class="background-option" style="display: none">
+      <label for="robot-gradient-start">Gradient Start Color: </label>
+      <br />
+      <input type="color" id="robot-gradient-start" value="#c9b7e7" />
+      <br />
+      <label for="robot-gradient-end">Gradient End Color: </label>
+      <br />
+      <input type="color" id="robot-gradient-end" value="#9fe4ff" />
+      <br />
+      <label for="robot-gradient-direction">Gradient Direction: </label>
+      <br />
+      <select id="robot-gradient-direction">
+        <option value="to bottom">Top to Bottom</option>
+        <option value="to right">Left to Right</option>
+        <option value="to left">Right to Left</option>
+      </select>
+    </div>
+    <!-- Text -->
+    <label for="assistant-text-color">Text Color: </label>
+    <br />
+    <input type="color" id="assistant-text-color" value="#000000" />
+    <br />
+    <!-- Border -->
+    <label for="assistant-bubble-border">Bubble Border: </label>
+    <br />
+    <input type="color" id="assistant-bubble-border" value="#000000" />
+    <br />
+    <label for="assistant-bubble-border-width"
+      >Bubble Border Width (px):
+    </label>
+    <input type="range" id="assistant-bubble-border-width" value="2" min="0" />
+    <br />
+
+    <label for="assistant-bubble-border-style">Border Style: </label>
+    <br />
+    <select id="assistant-bubble-border-style">
+      <option value="solid">Solid</option>
+      <option value="dashed">Dashed</option>
+      <option value="dotted">Dotted</option>
+      <option value="double">Double</option>
+      <option value="groove">Groove</option>
+      <option value="ridge">Ridge</option>
+    </select>
+    <br />
+  </div>
+  <!--------------------------------------------------------------->
+  <!------------Side bar/Headings ------------------------------------>
+  <!-------------------------------------------------------------->
+  <div id="sidebar-page" class="page">
+    <label for="sidebar-heading">Heading Color: </label>
+    <br />
+    <input type="color" id="sidebar-heading" value="#000000" />
+    <br />
+
+    <label for="font">Font: </label><br />
+    <input type="text" id="font" value="comfortaa, sans-serif" />
+    <br />
+
+    <label for="heading-font">Heading Font: </label><br />
+    <input type="text" id="heading-font" value="Delius Unicase, cursive" />
+    <br />
+
+    <!--------------------------------------------------------------->
+    <!------------Side Bar ------------------------------------>
+    <!-------------------------------------------------------------->
+
+    <label for="sidebar-bg-type">Sidebar Background Type: </label>
+    <br />
+    <select id="sidebar-bg-type">
+      <option value="solid">Solid Color</option>
+      <option value="gradient">Gradient</option>
+      <option value="image">Image</option>
+      <option value="pattern">Pattern</option>
+    </select>
+    <br />
+
+    <!-- Solid -->
+    <div id="sidebar-solid-bg" class="sidebar-bg-option">
+      <label for="sidebar-bg">Sidebar Solid Color: </label>
+      <br />
+      <input type="color" id="sidebar-bg" value="#ffffff" />
+    </div>
+
+    <!-- Gradient -->
+    <div
+      id="sidebar-gradient-bg"
+      class="sidebar-bg-option"
+      style="display: none"
+    >
+      <label for="sidebar-gradient-start">Sidebar Gradient Start: </label>
+      <input type="color" id="sidebar-gradient-start" value="#ffffff" /><br />
+      <label for="sidebar-gradient-end">Sidebar Gradient End: </label>
+      <input type="color" id="sidebar-gradient-end" value="#ffffff" /><br />
+      <label for="sidebar-gradient-direction"
+        >Sidebar Gradient Direction:
+      </label>
+      <br />
+      <select id="sidebar-gradient-direction">
+        <option value="to bottom">Top to Bottom</option>
+        <option value="to right">Left to Right</option>
+        <option value="to left">Right to Left</option>
+      </select>
+    </div>
+
+    <!-- Image -->
+    <div id="sidebar-image-bg" class="sidebar-bg-option" style="display: none">
+      <label for="sidebar-bg-image">Sidebar Background Image URL: </label>
+      <input type="text" id="sidebar-bg-image" value="" />
+    </div>
+
+    <!-- Pattern -->
+    <div
+      id="sidebar-pattern-bg"
+      class="sidebar-bg-option"
+      style="display: none"
+    >
+      <label for="sidebar-pattern-url">Sidebar Pattern URL: </label>
+      <input type="text" id="sidebar-pattern-url" placeholder="" />
+    </div>
+
+    <label for="sidebar-list-type">Sidebar List Background Type: </label>
+    <br />
+    <select id="sidebar-list-type">
+      <option value="solid">Solid Color</option>
+      <option value="gradient">Gradient</option>
+    </select>
+    <br />
+
+    <!-- Solid -->
+    <div id="sidebar-list-solid" class="sidebar-list-option">
+      <label for="sidebar-list-color">Sidebar List Color: </label>
+      <br />
+      <input type="color" id="sidebar-list-color" value="#ffffff" />
+    </div>
+
+    <!-- Gradient -->
+    <div
+      id="sidebar-list-gradient"
+      class="sidebar-list-option"
+      style="display: none"
+    >
+      <label for="sidebar-list-gradient-start">Gradient Start: </label>
+      <input
+        type="color"
+        id="sidebar-list-gradient-start"
+        value="#3276b1"
+      /><br />
+      <label for="sidebar-list-gradient-end">Gradient End: </label>
+      <input
+        type="color"
+        id="sidebar-list-gradient-end"
+        value="#1e3c5d"
+      /><br />
+      <label for="sidebar-list-gradient-direction">Gradient Direction: </label>
+      <br />
+      <select id="sidebar-list-gradient-direction">
+        <option value="to bottom">Top to Bottom</option>
+        <option value="to right">Left to Right</option>
+        <option value="to left">Right to Left</option>
+      </select>
+    </div>
+
+    <label for="sidebar-link">Sidebar Link Color: </label>
+    <br />
+    <input type="color" id="sidebar-link" value="#000000" />
+    <br />
+
+    <label for="sidebar-hover">Sidebar Hover Color: </label>
+    <br />
+    <input type="color" id="sidebar-hover" value="#CECECE" />
+    <br />
+
+    <label for="sidebar-heading">Sidebar Heading Color: </label>
+    <br />
+    <input type="color" id="sidebar-heading" value="#000000" />
+    <br />
+
+    <label for="sidebar-list-border">Sidebar Border Color: </label>
+    <br />
+    <input type="color" id="sidebar-list-border" value="#000000" />
+    <br />
+    <label for="sidebar-border-width">Sidebar Border Width (px): </label>
+    <input type="range" id="sidebar-border-width" value="2" min="0" />
+    <br />
+
+    <label for="sidebar-border-style">Sidebar Border Style: </label>
+    <br />
+    <select id="sidebar-border-style">
+      <option value="solid">Solid</option>
+      <option value="dashed">Dashed</option>
+      <option value="dotted">Dotted</option>
+      <option value="double">Double</option>
+      <option value="groove">Groove</option>
+      <option value="ridge">Ridge</option>
+    </select>
+    <br />
+  </div>
+  <!--------------------------------------------------------------->
+  <!------------Buttons ------------------------------------>
+  <!-------------------------------------------------------------->
+  <div id="button-page" class="page">
+    <label for="button-bg">Button Background: </label>
+    <br />
+    <input type="color" id="button-bg" value="#ffffff" />
+    <br />
+
+    <label for="button-hover">Button Hover: </label>
+    <br />
+    <input type="color" id="button-hover" value="#CECECE" />
+    <br />
+
+    <label for="button-text">Button Text Color: </label>
+    <br />
+    <input type="color" id="button-text" value="white" />
+    <br />
+  </div>
+  <!--------------------------------------------------------------->
+  <!------------Other ------------------------------------>
+  <!-------------------------------------------------------------->
+  <div id="other-page" class="page">
+    <label for="code-bg">Code Box Background: </label>
+    <br />
+    <input type="color" id="code-bg" value="#ffffff" />
+    <br />
+  </div>
+  <!--------------------------------------------------------------->
+</div>
+<button id="toggle-customizer">Hide</button>

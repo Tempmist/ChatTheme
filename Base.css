@@ -1,0 +1,245 @@
+/* =============================
+   🌐 Imports
+   ============================= */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Delius+Unicase:wght@400;700&display=swap');
+/* =============================
+   🌑 Light Mode Overrides
+   ============================= */
+:root {
+    /* Layout */
+    --background-main: #c9b7e7;
+    --input-box: #e998ce;
+    --input-text: rgb(58, 0, 65);
+    --heading-color: rgb(155, 9, 106);
+    --font: "comfortaa", sans-serif;
+    --heading-font: "Delius Unicase", cursive;
+
+    /*Code Boxes*/
+    --code-bg: rgb(58, 37, 37);
+
+    /* Chat Bubbles */
+    --user-bubble-bg: #9fe4ff;
+    --user-text-color: #000285;
+    --user-bubble-border: 1px solid rgb(255, 174, 0);
+
+    --assistant-bubble-bg: #fdc89d;
+    --assistant-text-color: rgb(7, 138, 179);
+    --assistant-bubble-border: 1px solid rgb(0, 195, 255);
+
+    /* Sidebar */
+    --sidebar-bg: linear-gradient(0deg, rgb(4, 92, 163) 0%, rgb(253, 224, 142) 100%);
+    --sidebar-link: rgb(73, 27, 75);
+    --sidebar-hover: rgba(255, 174, 0, 0.2);
+    --sidebar-heading: rgb(54, 26, 80);
+    --sidebar-list-border: 1px solid rgb(66, 40, 128);
+    --sidebar-list-color: linear-gradient(0deg, rgb(4, 92, 163) 0%, rgb(253, 224, 142) 100%);
+
+    /* Buttons */
+    --button-bg: transparent;
+    --button-hover: transparent;
+    --button-text: rgb(75, 32, 77);
+}
+/* =============================
+   🌑 Dark Mode Overrides
+   ============================= */
+.dark {
+    /* Layout */
+    --background-main: #3c2e53;
+    --input-box: #883888;
+    --input-text: rgb(240, 211, 243);
+    --heading-color: rgb(251, 251, 252);
+    --font: "comfortaa", sans-serif;
+    --heading-font: "Delius Unicase", cursive;
+
+    /*Code Boxes*/
+    --code-bg: rgb(58, 37, 37);
+
+    /* Chat Bubbles */
+    --user-bubble-bg: #a74e6c;
+    --user-text-color: #dbf1ff;
+    --user-bubble-border: 1px solid rgb(255, 221, 148);
+
+    --assistant-bubble-bg: #602085;
+    --assistant-text-color: rgb(255, 239, 253);
+    --assistant-bubble-border: 1px solid rgba(255, 214, 0, 1);
+
+    /* Sidebar */
+    --sidebar-bg: linear-gradient(0deg, rgba(39, 28, 124, 1) 0%, rgba(80, 20, 120, 1) 100%);
+    --sidebar-link: rgb(238, 187, 240);
+    --sidebar-hover: rgba(255, 118, 74, 0.2);
+    --sidebar-heading: rgb(204, 150, 255);
+    --sidebar-list-border: 1px solid rgb(255, 224, 51);
+    --sidebar-list-color: linear-gradient(0deg, rgba(39, 28, 124, 1) 0%, rgba(80, 20, 120, 1) 100%);
+
+    /* Buttons */
+    --button-bg: rgb(211, 30, 202);
+    --button-hover: rgb(135, 135, 235);
+    --button-text: rgb(245, 188, 247);
+}
+/* =============================
+   🖼️ Background
+   ============================= */
+body {
+    background: var(--background-main) !important;
+}
+
+/* =============================
+   💬 Chat Bubbles
+   ============================= */
+div[data-message-author-role="user"]>div>div {
+    background: var(--user-bubble-bg) !important;
+    color: var(--user-text-color) !important;
+    border: var(--user-bubble-border) !important;
+    border-radius: 20px !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    font-family: var(--font) !important;
+}
+
+div[data-message-author-role="assistant"]>div>div {
+    background: var(--assistant-bubble-bg) !important;
+    color: var(--assistant-text-color) !important;
+    border: var(--assistant-bubble-border) !important;
+    border-radius: 20px !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    font-family: var(--font) !important;
+}
+
+div[data-message-author-role="assistant"] strong {
+    color: var(--assistant-text-color) !important;
+}
+
+div[data-message-author-role="assistant"] h3 {
+    color: var(--assistant-text-color) !important;
+
+}
+
+/* =============================
+   🧾 Input Box Styling
+   ============================= */
+form[data-type="unified-composer"]>div {
+    background: var(--input-box);
+}
+
+div[contenteditable] {
+    color: var(--input-text);
+}
+
+/* =============================
+   🏠 Sidebar Styling
+   ============================= */
+nav {
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
+    padding-left: 15px !important;
+    padding-right: 5px !important;
+}
+
+nav div {
+    background: transparent;
+    color: var(--sidebar-link) !important;
+    font-size: 15px !important;
+}
+
+nav h2 {
+    color: var(--sidebar-heading) !important;
+    font-family: var(--heading-font) !important;
+    font-size: 15px !important;
+}
+
+nav aside {
+    background: var(--sidebar-list-color);
+    border: var(--sidebar-list-border);
+    border-radius: 20px;
+    color: var(--sidebar-link) !important;
+}
+
+nav a:hover {
+    background: var(--sidebar-hover);
+    border-radius: 20px;
+}
+
+/* whatever is above Explore*/
+div[class="group/sidebar"]>div:nth-child(3)>div>a {
+    background: transparent !important;
+}
+
+div[class="group/sidebar"]>div:nth-child(3)>div:hover {
+    background: var(--sidebar-hover) !important;
+    border-radius: 20px !important;
+}
+
+/* Explore*/
+#sidebar>div:nth-child(3)>a {
+    color: var(--sidebar-link);
+}
+
+#sidebar>div:nth-child(3)>a:hover {
+    background: var(--sidebar-hover) !important;
+    border-radius: 20px !important;
+}
+
+/*Library*/
+[title="Library"] {
+    background: transparent !important
+}
+
+[title="Library"]:hover {
+    background: var(--sidebar-hover) !important;
+    border-radius: 20px !important
+}
+
+/* =============================
+   🔘 Button Styling
+   ============================= */
+button {
+    background: var(--button-bg) !important;
+    color: var(--button-text) !important;
+    border-radius: 100px !important;
+}
+
+button:hover {
+    background: var(--button-hover) !important;
+}
+
+/* =============================
+   ❌ Hide/Remove UI Elements
+   ============================= */
+/* Header Bar*/
+#page-header {
+    background: transparent;
+}
+
+body>div>div>div>div>div {
+    background: transparent;
+}
+
+/*Title*/
+[data-testid="model-switcher-dropdown-button"] {
+    display: none;
+}
+
+div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
+    display: none;
+}
+
+/*Sora Title*/
+[title="Sora"] {
+    display: none !important;
+}
+
+/*Upgrade Side Banner - Mobile*/
+.group.flex.gap-2.p-2\.5.text-sm.cursor-pointer.focus\:ring-0.radix-disabled\:pointer-events-none.radix-disabled\:opacity-50.items-center.hover\:bg-token-sidebar-surface-secondary.screen-arch\:px-2.screen-arch\:py-1\.5.screen-arch\:min-h-\[47px\].m-0.rounded-lg.px-2 {
+    display: none;
+}
+
+/*Upgrade Side Banner - PC */
+body>div>div>div>div>div>nav>div>div>div>div {
+    display: none;
+}
+
+/*Overlimit Banner*/
+.py-4 {
+    display: none;
+}
