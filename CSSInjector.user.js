@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSS Injector
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.5
 // @description  Inject custom CSS into a webpage
 // @author       You
 // @match        https://chatgpt.com/*
@@ -247,6 +247,20 @@ body > div> div > div > div > div > nav >div>div>div>div{
 
     `;
 
-  // Injecting the custom CSS into the page
-  GM_addStyle(customCSS);
+  function injectCSS() {
+    if (typeof GM_addStyle === 'function') {
+      GM_addStyle(customCSS);
+    } else {
+      const style = document.createElement('style');
+      style.textContent = customCSS;
+      document.head.appendChild(style);
+    }
+  }
+
+  // Wait until full load
+  if (document.readyState === 'complete') {
+    injectCSS();
+  } else {
+    window.addEventListener('load', injectCSS);
+  }
 })();
