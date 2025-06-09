@@ -12,7 +12,10 @@
 
 (function() {
   "use strict";
-
+ const fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Delius+Unicase:wght@400;700&display=swap';
+  document.head.appendChild(fontLink);
   // Your custom CSS
   const customCSS = `
 /* =============================
