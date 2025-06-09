@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSS Injector
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.7
 // @description  Inject custom CSS into a webpage
 // @author       You
 // @match        https://chatgpt.com/*
@@ -250,20 +250,43 @@ body > div> div > div > div > div > nav >div>div>div>div{
 
     `;
 
-  function injectCSS() {
+function applyCSS() {
     if (typeof GM_addStyle === 'function') {
       GM_addStyle(customCSS);
     } else {
-      const style = document.createElement('style');
-      style.textContent = customCSS;
-      document.head.appendChild(style);
+      let styleTag = document.getElementById('resilient-css-injector');
+      if (!styleTag) {
+        styleTag = document.createElement('style');
+        styleTag.id = 'resilient-css-injector';
+        document.head.appendChild(styleTag);
+      }
+      styleTag.textContent = customCSS;
     }
   }
 
-  // Wait until full load
+  // 4) Apply on load (or immediately if already loaded)
   if (document.readyState === 'complete') {
-    injectCSS();
+    applyCSS();
   } else {
-    window.addEventListener('load', injectCSS);
+    window.addEventListener('load', applyCSS);
   }
+
+  // 5) Re-apply when tab regains focus (forces repaint) 😊
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      applyCSS();
+    }
+  });
+
+  // 6) Re-apply if key parts of the UI are re-rendered
+  const observer = new MutationObserver(mutations => {
+    for (const m of mutations) {
+      if (m.type === 'childList' && m.addedNodes.length) {
+        applyCSS();
+        break;
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
 })();
