@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSS Injector
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  Inject custom CSS into a webpage
 // @author       You
 // @match        https://chatgpt.com/*
