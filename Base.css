@@ -235,10 +235,9 @@ div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
 }
 
 /*Upgrade Side Banner - PC */
-body>div>div>div>div>div>nav>div>div>div>div {
+#stage-slideover-sidebar > div > nav > div.bg-token-bg-elevated-secondary.sticky.bottom-0.z-30.px-\[3px\].py-1\.5.group-data-scrolled-from-end\/scrollport\:shadow-\(--sharp-edge-bottom-shadow\).empty\:hidden > div{
     display: none;
 }
-
 /*Overlimit Banner*/
 .py-4 {
     display: none;

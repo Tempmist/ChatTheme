@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSS Injector
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.5
 // @description  Inject custom CSS into a webpage
 // @author       You
 // @match        https://chatgpt.com/*
@@ -237,8 +237,8 @@ div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
     display: none !important;
 }
 /*Upgrade Side Banner - PC */
-body > div> div > div > div > div > nav >div>div>div>div{
-  display:none !important;
+#stage-slideover-sidebar > div > nav > div.bg-token-bg-elevated-secondary.sticky.bottom-0.z-30.px-\[3px\].py-1\.5.group-data-scrolled-from-end\/scrollport\:shadow-\(--sharp-edge-bottom-shadow\).empty\:hidden > div{
+    display: none;
 }
 /*Overlimit Banner*/
 .py-4 {
