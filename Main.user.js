@@ -1,17 +1,22 @@
 // ==UserScript==
 // @name         ChatGPT CSS Customizer
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  Customize CSS variables for ChatGPT's UI
+// @version      0.8
+// @description  Customize and save CSS variables for ChatGPT's UI
 // @author       You
 // @match        https://chatgpt.com/*
 // @grant        GM_addStyle
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @updateURL https://raw.githubusercontent.com/Tempmist/ChatTheme/refs/heads/master/Main.user.js
 // @downloadURL https://raw.githubusercontent.com/Tempmist/ChatTheme/refs/heads/master/Main.user.js
 // ==/UserScript==
 
 (function() {
   "use strict";
+
+  // A unique key for storing settings in Tampermonkey's storage
+  const SETTINGS_KEY = "chatgptCustomizerSettings";
 
   // 🧱 DOM Setup: Create UI (unchanged) hi
   const uiHTML = `<style>
@@ -61,6 +66,7 @@
     <button class="page-nav-btn" data-page="user-page">User Bubbles</button>
     <button class="page-nav-btn" data-page="robo-page">Robo Bubbles</button>
     <button class="page-nav-btn" data-page="other-page">Other</button>
+    <button id="save-settings" style="background: #007bff; color: white;">Save</button>
     <button id="download-css" style="background: green; color: white">
       Download CSS
     </button>
@@ -458,7 +464,7 @@
   <!--------------------------------------------------------------->
 </div>
 <button id="toggle-customizer">Hide</button>
- `; // <-- Keep your existing full HTML content here, no change needed
+  `;
 
   // 🌒 Shadow DOM container
   const container = document.createElement("div");
@@ -584,6 +590,19 @@
   // 💾 Download button
   el("download-css").addEventListener("click", downloadCSS);
 
+  // ✨ NEW: Manual Save button
+  el("save-settings").addEventListener("click", () => {
+    const styles = Object.fromEntries(
+      Object.entries(inputs).map(([k, v]) => [k, v.value])
+    );
+    saveSettings(styles);
+    const saveBtn = el("save-settings");
+    saveBtn.textContent = "Saved!";
+    setTimeout(() => {
+      saveBtn.textContent = "Save";
+    }, 1500);
+  });
+
   // 📦 Build final CSS
   function updateCSS() {
     const styles = Object.fromEntries(
@@ -669,15 +688,15 @@ ${styles["theme-mode"]} {
   --button-text: ${styles["button-text"]};
 }
 /* =============================
-   🖼️ Background
-   ============================= */
+    🖼️ Background
+    ============================= */
 body {
     background: var(--background-main) !important;
 }
 
 /* =============================
-   💬 Chat Bubbles
-   ============================= */
+    💬 Chat Bubbles
+    ============================= */
 div[data-message-author-role="user"]>div>div {
     background: var(--user-bubble-bg) !important;
     color: var(--user-text-color) !important;
@@ -708,8 +727,8 @@ div[data-message-author-role="assistant"] h3 {
 }
 
 /* =============================
-   🧾 Input Box Styling
-   ============================= */
+    🧾 Input Box Styling
+    ============================= */
 form[data-type="unified-composer"]>div {
     background: var(--input-box);
 }
@@ -719,8 +738,8 @@ div[contenteditable] {
 }
 
 /* =============================
-   🏠 Sidebar Styling
-   ============================= */
+    🏠 Sidebar Styling
+    ============================= */
 nav {
     background: var(--sidebar-bg) !important;
     color: var(--sidebar-text) !important;
@@ -783,8 +802,8 @@ div[class="group/sidebar"]>div:nth-child(3)>div:hover {
 }
 
 /* =============================
-   🔘 Button Styling
-   ============================= */
+    🔘 Button Styling
+    ============================= */
 button {
     background: var(--button-bg) !important;
     color: var(--button-text) !important;
@@ -796,8 +815,8 @@ button:hover {
 }
 
 /* =============================
-   ❌ Hide/Remove UI Elements
-   ============================= */
+    ❌ Hide/Remove UI Elements
+    ============================= */
 /* Header Bar*/
 #page-header {
     background: transparent;
@@ -822,7 +841,7 @@ div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
 }
 
 /*Upgrade Side Banner - Mobile*/
-.group.flex.gap-2.p-2\.5.text-sm.cursor-pointer.focus\:ring-0.radix-disabled\:pointer-events-none.radix-disabled\:opacity-50.items-center.hover\:bg-token-sidebar-surface-secondary.screen-arch\:px-2.screen-arch\:py-1\.5.screen-arch\:min-h-\[47px\].m-0.rounded-lg.px-2 {
+.group.flex.gap-2.p-2\\.5.text-sm.cursor-pointer.focus\\:ring-0.radix-disabled\\:pointer-events-none.radix-disabled\\:opacity-50.items-center.hover\\:bg-token-sidebar-surface-secondary.screen-arch\\:px-2.screen-arch\\:py-1\\.5.screen-arch\\:min-h-\\[47px\\].m-0.rounded-lg.px-2 {
     display: none;
 }
 
@@ -996,4 +1015,48 @@ ${styles["theme-mode"]} {
       activePage.classList.add("active");
     }
   }
+
+  // =================================================================
+  // NEW --- SAVE AND LOAD FUNCTIONALITY --- NEW
+  // =================================================================
+
+  /**
+   * Saves the current settings to Tampermonkey's storage.
+   * @param {object} styles - The object containing all current input values.
+   */
+  async function saveSettings(styles) {
+    await GM_setValue(SETTINGS_KEY, JSON.stringify(styles));
+  }
+
+  /**
+   * Loads settings from storage and applies them to the UI controls.
+   */
+  async function loadSettings() {
+    const savedStylesJSON = await GM_getValue(SETTINGS_KEY, null);
+    if (savedStylesJSON) {
+      try {
+        const savedStyles = JSON.parse(savedStylesJSON);
+        // Apply saved values to all the input elements
+        for (const key in savedStyles) {
+          if (inputs[key]) {
+            inputs[key].value = savedStyles[key];
+          }
+        }
+
+        // After setting values, trigger change events on dropdowns to update UI visibility
+        Object.values(inputs).forEach(input => {
+          if (input.tagName === "SELECT") {
+            input.dispatchEvent(new Event("change"));
+          }
+        });
+      } catch (e) {
+        console.error("Error loading customizer settings:", e);
+      }
+    }
+    // Finally, apply the loaded (or default) styles to the page
+    updateCSS();
+  }
+
+  // Load settings when the script starts
+  loadSettings();
 })();
