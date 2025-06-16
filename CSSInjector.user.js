@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CSS Injector
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.7
 // @description  Inject custom CSS into a webpage
 // @author       You
 // @match        https://chatgpt.com/*
@@ -12,7 +12,11 @@
 
 (function() {
   "use strict";
-
+  const fontLink = document.createElement("link");
+  fontLink.rel = "stylesheet";
+  fontLink.href =
+    "https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Delius+Unicase:wght@400;700&display=swap";
+  document.head.appendChild(fontLink);
   // Your custom CSS
   const customCSS = `
 /* =============================
@@ -247,6 +251,42 @@ div[class="group/sidebar"]>div:nth-child(1)>span>div>a {
 
     `;
 
-  // Injecting the custom CSS into the page
-  GM_addStyle(customCSS);
+  function applyCSS() {
+    if (typeof GM_addStyle === "function") {
+      GM_addStyle(customCSS);
+    } else {
+      let styleTag = document.getElementById("resilient-css-injector");
+      if (!styleTag) {
+        styleTag = document.createElement("style");
+        styleTag.id = "resilient-css-injector";
+        document.head.appendChild(styleTag);
+      }
+      styleTag.textContent = customCSS;
+    }
+  }
+
+  // 4) Apply on load (or immediately if already loaded)
+  if (document.readyState === "complete") {
+    applyCSS();
+  } else {
+    window.addEventListener("load", applyCSS);
+  }
+
+  // 5) Re-apply when tab regains focus (forces repaint) 😊
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      applyCSS();
+    }
+  });
+
+  // 6) Re-apply if key parts of the UI are re-rendered
+  const observer = new MutationObserver(mutations => {
+    for (const m of mutations) {
+      if (m.type === "childList" && m.addedNodes.length) {
+        applyCSS();
+        break;
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
